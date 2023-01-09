@@ -1,17 +1,35 @@
-def bsearch(a, tar):
-	l = 0
-	h = len(a)-1
-	m = 0
-	while l < h:
-		m = (l + h) // 2
-		if tar < a[m]:
-			h = m - 1
-		elif tar > a[m]:
-			l = m + 1
-		else:
-			l = m + 1
-	print(str(l) + ':' + str(h))
 
-tar = 5
-A = [1,2,3,4,5,5,5,6,6,7]
-bsearch(A, tar)
+def bsearch(lo, hi, num):
+
+    # res = False
+    # while lo <= hi:
+    #     mid = (lo + hi) // 2
+    #
+    #     if num == ar[mid]:
+    #         res = True
+    #         break
+    #     elif num < ar[mid]:
+    #         hi = mid - 1
+    #     else:
+    #         lo = mid + 1
+    #
+    # return res
+
+    if lo <= hi:
+        mid = (lo + hi) // 2
+
+        if num == ar[mid]:
+            return True
+        elif num < ar[mid]:
+            return bsearch(lo, mid-1, num)
+        else:
+            return bsearch(mid+1, hi, num)
+    else:
+        return False
+
+
+ar = sorted([6,4,10,1,5,7,16])
+num = 16
+
+res = bsearch(0, len(ar)-1, num)
+print(res)
